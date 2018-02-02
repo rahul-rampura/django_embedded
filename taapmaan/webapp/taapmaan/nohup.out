@@ -1,0 +1,5 @@
+/home/taapmaan/virtualenv/django1.10/local/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1430: RuntimeWarning: DateTimeField SensorData.time received a naive datetime (2018-01-11 22:27:10.250267) while time zone support is active.
+  RuntimeWarning)
+/home/taapmaan/virtualenv/django1.10/local/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1430: RuntimeWarning: DateTimeField SensorData.time received a naive datetime (2018-01-11 22:27:12.186944) while time zone support is active.
+  RuntimeWarning)
+/home/taapmaan/webapp/taapmaan/scripts/script.sh: line 5:  4853 Killed                  python /home/taapmaan/webapp/taapmaan/scripts/runner.py

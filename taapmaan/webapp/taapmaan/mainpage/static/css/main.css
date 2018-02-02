@@ -1,0 +1,57 @@
+/* main.css */
+
+html {
+    height: 100%;
+    margin: 0%;
+}
+
+body {
+    height: 100%;
+    margin: 0%;
+    min-height: 100%;
+    padding-top: 70px; // Required because of nav-bar in fixed to top
+    padding-bottom: 70px; // Required because of nav-bar in fixed to bottom
+    margin-bottom: 70px;
+}
+
+td {
+    //font-family: "Source Sans Pro", Arial;
+}
+
+#footer {
+    height: 70px;
+}
+
+
+/*
+#footer {
+    clear: both;
+    position: relative;
+    z-index: 10;
+    height: 3em;
+    margin-top: -3em;
+    bottom: 0;
+}
+*/
+
+.scroll-bar {
+    //float:left;
+    width: 100%;
+    overflow-y: auto;
+    height: 100px;
+}
+
+.modal-header,
+h4,
+.close {
+    background-color: #5cb85c;
+    color: white !important;
+    text-align: center;
+    font-size: 30px;
+}
+
+.modal-footer {
+    background-color: #5cb85c;
+    color: white;
+    text-align: center;
+}

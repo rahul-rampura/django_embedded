@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}
+{% endblock %}
+
+{% block main-content %}
+    <div class="alert alert-info" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        Sensor Settings Page is in progress.
+        Please redirect yourself to <a href="/">home page</a>.
+    </div>
+    <div class="container-fluid">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <span>Online Sensors at {{ sensor_server }}</span>
+                    <!--
+                    <span class="pull-right">
+                        <input type="submit" value="Add new sensor" style="color:black">
+                    </span>
+                    -->
+                    <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#addSensorForm" style="padding:0 5px 0 5px">
+                        Add new sensor
+                    </button>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th width="10%">Name</th>
+                                    <th width="10%">Type</th>
+                                    <th>URI</th>
+                                    <th>Time Period</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for sensor in sensors %}
+                                    <tr>
+                                        <td><a data-toggle="modal" data-target="#addSensorForm" href="./sensor?name={{ sensor.name}}" onclick="getForm()">{{ sensor.name }}</a></td>
+                                        <!--
+                                        <td>{{ sensor.name }}</td>
+                                        -->
+                                        <td>{{ sensor.sensor_type }}</td>
+                                        <td>{{ sensor.uri }}</td>
+                                        <td>{{ sensor.time_period }} mins</td>
+                                        <td>{{ sensor.desc }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="addSensorForm" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="padding:10px 50px;">
+                        <button type="button" class="close" data-dismiss="modal" style="padding:10px">&times;</button>
+                        <h4><span class="glyphicon glyphicon-oil"></span> Add Sensor</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ new_sensor_form.as_p}}
+                            <input type="submit" value="Save Settings">
+                        </form>
+                    </div>
+
+                    <div class="modal-footer" style="padding:10px 50px;">
+                        <div id="copyright">
+                            <p>
+                                <center>&copy; <a href="http://www.coriolis.co.in" target="_blank" style="color:white"><strong>Coriolis Technologies Pvt Ltd</strong></a>
+                                </center>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Latest sensor reading</div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Sensor</th>
+                                    <th>Time</th>
+                                    <th>Reading</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for data in latest_data %}
+                                    <tr>
+                                        <td>{{ data.name  }}</td>
+                                        <td>{{ data.time }}</td>
+                                        <td>{{ data.reading }} &#8451;</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Device status at {{ device_server }}</div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Device</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                    <th>URI</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for device in devices %}
+                                    <tr>
+                                        <td>{{ device.name }}</td>
+                                        <td>{{ device.device_type }}</td>
+                                        <td>{{ device.desc }}</td>
+                                        <td>{{ device.uri }}</td>
+                                        <td>
+                                            {% if device.status %}
+                                                <span class="glyphicon glyphicon-stop" style="color:green"></span>                                                
+                                            {% else %}
+                                                <span class="glyphicon glyphicon-stop" style="color:red"></span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

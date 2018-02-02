@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block plot_graph_js %}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+    google.charts.load('current', {'packages':['annotationchart']});
+    google.charts.setOnLoadCallback(drawGraphs);
+
+
+    function drawGraphs() {
+        {% for sensor in sensors %}
+            drawGraph('{{ sensor.name }}', {{ sensor.data|safe }});
+        {% endfor %}
+    }
+
+    function drawGraph(name, sensor_data) {
+        var chartId = 'chart-' + name;
+        var data = new google.visualization.DataTable();
+        data.addColumn('datetime', 'Time');
+        data.addColumn('number', name);
+        
+        for (i = 0; i < sensor_data.length; i++) {
+            data.addRows([[new Date(sensor_data[i]['year'],  sensor_data[i]['month'] , sensor_data[i]['day'], sensor_data[i]['hour'], sensor_data[i]['minute'], sensor_data[i]['second']), sensor_data[i]['value']]]);
+        }
+
+        var options = {
+            chart: {
+                title: 'Temperature reading',
+                subtitle: 'Temperature reading of ' + name
+            },
+            width: '100%',
+            height: 500,
+        };
+
+        var chart = new google.visualization.AnnotationChart(document.getElementById(chartId));
+        chart.draw(data, options);
+    }
+    </script>
+{% endblock %}
+
+{% block main-content %}
+    <div>
+        <div class="pull-right">
+            <a data-toggle="collapse" data-target="#searchWindow" aria-controls="searchWindow" aria-expanded="false">
+                Click here to filter graphs
+            </a>
+        </div>
+        <div class="collapse" id="searchWindow">
+            <form method="post">
+                {% csrf_token %}
+                {{ form }}
+                <input id="plotGraphs" type="submit" value="Plot Graph">
+            </form>
+        </div>
+        <br>
+    </div>
+
+    <div>
+        {% for sensor in sensors %}
+            <span>Graph for {{ sensor.name }},</span>
+            <div id="chart-{{ sensor.name }}">Loading graph...</div>
+            <hr>
+        {% endfor %}
+    </div>
+{% endblock %}

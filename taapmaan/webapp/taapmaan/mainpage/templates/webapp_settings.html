@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}
+{% endblock %}
+
+{% block main-content %}
+    <div class="alert alert-info" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        Web application Settings Page is in progress.
+        Please redirect yourself to <a href="/">home page</a>.
+    </div>
+    <div class="container-fluid">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Graph Settings</div>
+                <div class="panel-body">
+                    Graph Settings are as follows,
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ graph_setting_form }}
+                        <input class="pull-right" type="submit" value="Save Settings">
+                    </form>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">Alert Settings</div>
+                <div class="panel-body">
+                    Register yourself to receive weekly emails and updates,
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ email_setting_form }}
+                        <input class="pull-right" type="submit" value="Add">
+                    </form>
+                    <hr>
+                        Already registered email address,
+                    <div class="scroll-bar">
+                        {% for person in emails %}
+                            <li><a href="?unsubscribe={{ person.email }}">&times;</a> {{ person.email }}</li>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">General Settings</div>
+                <div class="panel-body">
+                    General Settings...
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

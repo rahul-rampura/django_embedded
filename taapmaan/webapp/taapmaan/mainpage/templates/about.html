@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}
+{% endblock %}
+
+{% block main-content %}
+    <!--
+    <div class="alert alert-info" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        Pagination is not working with search queries.
+    </div>
+    <div class="test-ajax">
+        <button type="button" onclick="getForm()">click</button>
+        <div id="demo">
+            before click
+        </div>
+    </div>
+    -->
+    <div>
+	<span>Helpful URLs to filter graph plots,</span>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>URL</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="http://taapmaan.lan.coriolis.co.in:8000">http://taapmaan.lan.coriolis.co.in:8000</a></td>
+                    <td>Plot today's data for all the temperature sensors</td>
+                </tr>
+                <tr>
+                    <td><a href="http://taapmaan.lan.coriolis.co.in:8000/?sensor=sensor1">http://taapmaan.lan.coriolis.co.in:8000/?sensor=sensor1</a></td>
+                    <td>Plot today's data for sensor1</td>
+                </tr>
+                <tr>
+                    <td><a href="http://taapmaan.lan.coriolis.co.in:8000/?sensor=sensor1&start_date=2017-05-03 00:00:00&end_date=2017-05-03 23:59:59">http://taapmaan.lan.coriolis.co.in:8000/?sensor=sensor1&start_date=2017-05-03 00:00:00&end_date=2017-05-03 23:59:59</a></td>
+                    <td>Plot data for date and time in the range of 2017-05-03T00:00:00 to 2017-05-03T23:59:59 for sensor1</td>
+                </tr>
+                <tr>
+                    <td><a href="http://taapmaan.lan.coriolis.co.in:8000/?start_date=2017-05-03 00:00:00&end_date=2017-05-03 23:59:59">http://taapmaan.lan.coriolis.co.in:8000/?start_date=2017-05-03 00:00:00&end_date=2017-05-03 23:59:59</a></td>
+                    <td>Plot data for date and time in the range of 2017-05-03T00:00:00 to 2017-05-03T23:59:59 for all the temperature sensors</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+	<span>Helpful URLs to filter logs,</span>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>URL</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="http://taapmaan.lan.coriolis.co.in:8000/logs">http://taapmaan.lan.coriolis.co.in:8000/logs</a></td>
+                    <td>List all the logs</td>
+                </tr>
+                <tr>
+                    <td><a href="http://taapmaan.lan.coriolis.co.in:8000/logs/?level=INFO">http://taapmaan.lan.coriolis.co.in:8000/logs/?level=INFO</a></td>
+                    <td>List logs with level "INFO". Other levels are - "All", "DEBUG", "WARNING", "ERROR", "CRITICAL"</td>
+                </tr>
+                <tr>
+                    <td><a href="http://taapmaan.lan.coriolis.co.in:8000/logs/?sensor=sensor1">http://taapmaan.lan.coriolis.co.in:8000/logs/?sensor=sensor1</a></td>
+                    <td>List logs for sensor "sensor1"</td>
+                </tr>
+                <tr>
+                    <td><a href="http://taapmaan.lan.coriolis.co.in:8000/logs/?search_str=saved%20reading">http://taapmaan.lan.coriolis.co.in:8000/logs/?search_str=saved%20reading</a></td>
+                    <td>List logs with message contaning "saved reading"</td>
+                </tr>
+                <tr>
+                    <td><a href="http://taapmaan.lan.coriolis.co.in:8000/logs/?level=INFO&sensor=sensor1&search_str=saved%20reading">http://taapmaan.lan.coriolis.co.in:8000/logs/?level=INFO&sensor=sensor1&search_str=saved%20reading</a></td>
+                    <td>List logs with level "INFO", sensor "sensor1" and message contaning "saved reading"</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+{% endblock %}

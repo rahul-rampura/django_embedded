@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        {% block title %}Taapmaan{% endblock %}
+    </title>
+    <meta name="description" content="Analyze Environment Temperature">
+    <meta name="author" content="Madhav Mahajan">
+
+    <!-- Mobile first feature of Bootstrap-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap Stylesheet -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    {% load staticfiles %}
+
+    {% block plot_graph_js %}
+    {% endblock %}
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle pull-right" data-toggle="collapse" data-target="#right-navbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <ul class="nav navbar-nav navbar-left">
+                    <a class="navbar-brand" href="/" target="_blank">
+                        <img class="logo" id="prj-logo" alt="Logo" src="{% static 'img/taapmaan.png' %}" width="100%" height="37">
+                    </a>
+                    <a id="home" class="navbar-brand" href="/"><span style="color: #1dd2f3; font-weight: bold">TAAP</span><span style="color: orange; font-weight: bold">MAAN</span></a>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse" id="right-navbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="../logs">Logs</a></li>
+                    <li><a>/</a></li>
+                    <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="../settings" role="button" aria-haspopup="true" aria-expanded="false">
+                            Settings <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../settings/webapp">App Settings</a></li>
+                            <li><a href="../settings/sensor">Sensor Settings</a></li>
+                            <li><a href="../settings/rule">Rules</a></li>
+                        </ul>
+                    </li>
+                    <li><a>/</a></li>
+                    <li><a href="../about">About</a></li>
+                    <li><a>/</a></li>
+                    <li>
+                        <a href="#" data-toggle="popover" data-placement="auto" data-trigger="focus" title="Hi, there" data-content="Welcome to TAAPMAAN!">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        {% block main-content %}
+        {% endblock%}
+    </div>
+
+    <div id="footer">
+            <hr>
+            <div id="copyright">
+                <p>
+                    <center>&copy; <a href="http://www.coriolis.co.in" target="_blank"><strong>Coriolis Technologies Pvt Ltd</strong></a>
+                    </center>
+                </p>
+            </div>
+    </div>
+    <!--
+    <div id="footer" class="container">
+        <nav class="navbar navbar-default navbar-fixed-bottom">
+            <div class="container">
+                <div id="copyright">
+                    <p>
+                        <center>&copy; <a href="http://www.coriolis.co.in" target="_blank"><strong>Coriolis Technologies Pvt Ltd</strong></a>
+                        </center>
+                    </p>
+                </div>
+            </div>
+        </nav>
+    </div>
+    -->
+    <!-- Custom Stylesheet -->
+    <link type="text/css" rel="stylesheet" href="{% static 'css/main.css' %}">
+    <!-- Custom Javascript -->
+    <script src=" {% static 'js/main.js' %}"></script>
+
+
+</body>
+
+</html>
